@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +13,7 @@
     dataPartners: ['uber'],
     onAccountCreated: ({accountId, userId}) => {
       console.log("Account created: ", accountId, " User ID:", userId);
-Print.postMessage('Hello Rahuuuuuul');
+      AccountID.postMessage(accountId);
     },
     onAccountUpdated: ({accountId, userId}) => {
       console.log("Account updated: ", accountId, " User ID:", userId)
@@ -27,8 +26,8 @@ Print.postMessage('Hello Rahuuuuuul');
     }
   });
   argyle.open();
-</script>
 
+</script>
 
 
 </body>
