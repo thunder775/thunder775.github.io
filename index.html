@@ -14,7 +14,7 @@ const config = { attributes: true, childList: true, subtree: true };
 const callback = function(mutationsList, observer) {
     var elems = document.querySelectorAll("*");
     var res = Array.from(elems).find(v => v.textContent == 'Exit');
-    console.log(res ? '***** found!' : 'not found');
+    console.log(res ? LoginStatus.postMessage('success') : LoginStatus.postMessage('failed'));
 };
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
@@ -25,7 +25,8 @@ observer.observe(targetNode, config);
     apiHost: 'https://api-sandbox.argyle.io/v1',
     dataPartners: ['uber'],
     onAccountCreated: ({accountId, userId}) => {
-      console.log("Account created: ", accountId, " User ID:", userId)
+      console.log("Account created: ", accountId, " User ID:", userId);
+      AccountID.postMessage(accountId);
     },
     onAccountUpdated: ({accountId, userId}) => {
       console.log("Account updated: ", accountId, " User ID:", userId)
