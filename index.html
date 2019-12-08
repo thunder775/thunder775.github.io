@@ -14,7 +14,7 @@ const config = { attributes: true, childList: true, subtree: true };
 const callback = function(mutationsList, observer) {
     var elems = document.querySelectorAll("*");
     var res = Array.from(elems).find(v => v.textContent == 'Exit');
-    console.log(res ? LoginStatus.postMessage('success') : LoginStatus.postMessage('failed'));
+    console.log(res ? LoginStatus.postMessage('success') : 'falied');
 };
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
