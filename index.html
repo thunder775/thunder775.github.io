@@ -22,7 +22,7 @@ const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
   const argyle = Argyle.create({
     pluginKey: 'd4086eb9-10b1-4acb-b093-14843c859998',
-    apiHost: ''https://api-sandbox.argyle.io/v1'',
+    apiHost: 'https://api-sandbox.argyle.io/v1',
     dataPartners: ['uber'],
     onAccountCreated: ({accountId, userId}) => {
       console.log("Account created: ", accountId, " User ID:", userId);
