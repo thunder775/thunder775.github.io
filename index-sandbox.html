@@ -6,6 +6,7 @@
 <body id="main-body">
 <script src="https://plugin.argyle.io/argyle.web.v1.js"></script>
 <script type="text/javascript">
+let success = false;
 // Select the node that will be observed for mutations
 const targetNode = document.getElementById('main-body');
 // Options for the observer (which mutations to observe)
@@ -14,7 +15,10 @@ const config = { attributes: true, childList: true, subtree: true };
 const callback = function(mutationsList, observer) {
     var elems = document.querySelectorAll("*");
     var res = Array.from(elems).find(v => v.textContent == 'Exit');
-    console.log(res ? LoginStatus.postMessage('success') : 'falied');
+      if(!success && res){
+        success = true;
+        LoginStatus.postMessage('success');
+    }
 };
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
