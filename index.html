@@ -15,7 +15,7 @@
             AccountID.postMessage(accountId);
         },
         onAccountConnected: ({accountId, userId}) => {
-            LoginStatus.postMessage('success'+accountId);
+            LoginStatus.postMessage('success');
         },
         onAccountUpdated: ({accountId, userId}) => {
             console.log("Account updated: ", accountId, " User ID:", userId)

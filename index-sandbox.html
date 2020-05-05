@@ -17,7 +17,7 @@
         onAccountUpdated: ({accountId, userId}) => {
             console.log("Account updated: ", accountId, " User ID:", userId)
         }, onAccountConnected: ({accountId, userId}) => {
-            LoginStatus.postMessage('success' + accountId);
+            LoginStatus.postMessage('success');
         },
         onAccountRemoved: ({accountId, userId}) => {
             console.log("Account removed: ", accountId, " User ID:", userId)
