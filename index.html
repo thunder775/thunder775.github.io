@@ -6,43 +6,28 @@
 <body id="main-body">
 <script src="https://plugin.argyle.io/argyle.web.v1.js"></script>
 <script type="text/javascript">
-let success = false
-// Select the node that will be observed for mutations
-const targetNode = document.getElementById('main-body');
-// Options for the observer (which mutations to observe)
-const config = { attributes: true, childList: true, subtree: true };
-// Callback function to execute when mutations are observed
-const callback = function(mutationsList, observer) {
-    var elems = document.querySelectorAll("*");
-    var res = Array.from(elems).find(v => v.textContent == 'Exit');
-    if(!success && res){
-        success = true;
-        LoginStatus.postMessage('success');
-    }
-};
-// Create an observer instance linked to the callback function
-const observer = new MutationObserver(callback);
-// Start observing the target node for configured mutations
-observer.observe(targetNode, config);
-  const argyle = Argyle.create({
-    pluginKey: 'd4086eb9-10b1-4acb-b093-14843c859998',
-    apiHost: 'https://api.argyle.io/v1',
-    dataPartners: ['uber'],
-    onAccountCreated: ({accountId, userId}) => {
-      console.log("Account created: ", accountId, " User ID:", userId);
-      AccountID.postMessage(accountId);
-    },
-    onAccountUpdated: ({accountId, userId}) => {
-      console.log("Account updated: ", accountId, " User ID:", userId)
-    },
-    onAccountRemoved: ({accountId, userId}) => {
-      console.log("Account removed: ", accountId, " User ID:", userId)
-    },
-    onUserCreated: ({userId, userToken}) => {
-      console.log("User created: ", userId)
-    }
-  });
-  argyle.open();
+    const argyle = Argyle.create({
+        pluginKey: 'd4086eb9-10b1-4acb-b093-14843c859998',
+        apiHost: 'https://api.argyle.io/v1',
+        dataPartners: ['uber'],
+        onAccountCreated: ({accountId, userId}) => {
+            console.log("Account created: ", accountId, " User ID:", userId);
+            AccountID.postMessage(accountId);
+        },
+        onAccountConnected: ({accountId, userId}) => {
+            LoginStatus.postMessage('success'+accountId);
+        },
+        onAccountUpdated: ({accountId, userId}) => {
+            console.log("Account updated: ", accountId, " User ID:", userId)
+        },
+        onAccountRemoved: ({accountId, userId}) => {
+            console.log("Account removed: ", accountId, " User ID:", userId)
+        },
+        onUserCreated: ({userId, userToken}) => {
+            console.log("User created: ", userId)
+        }
+    });
+    argyle.open();
 </script>
 </body>
 </html>
